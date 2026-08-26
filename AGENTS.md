@@ -20,13 +20,15 @@ Keep these steps in mind while building your TODO list.
 
 ## Global Superpowers Bridge
 
-<!-- global-superpowers-bridge:v1 -->
+<!-- global-superpowers-bridge:v1.1 -->
 
 The Firecrawl-specific testing and tooling rules above remain authoritative. In addition:
 
 - Read repository instructions and the GitHub task/issue brief before editing; treat the brief as the source of truth for scope and acceptance criteria.
 - Work on the smallest isolated branch/PR. Never implement directly on `main`/`master` without explicit authorization.
 - Each delegated implementation task should use a fresh coding-agent session. Independent review must be a separate pass/session.
+- When `@copilot` is invoked from an existing pull request, the agent may push only to that pull request's head branch. Never ask that session to create or publish another branch or separate PR; branch escape can fail with HTTP 403 in `engine-tools-report_progress`.
+- Controller-first PR-comment delegation: create the isolated branch/PR first, then tell `@copilot` to modify THIS PR branch directly. A genuinely separate branch/PR requires a new GitHub Agents/MCP task with the intended base branch.
 - When Superpowers skills are available, use the relevant process skill before implementation: brainstorming for new behavior/design, systematic debugging for bugs, TDD for features/fixes, and verification before completion claims.
 - Follow the repository-native Firecrawl commands above; do not substitute invented test/build commands.
 - Never expose credentials or secrets in source, issues, PRs, comments, or logs.
@@ -35,4 +37,4 @@ The Firecrawl-specific testing and tooling rules above remain authoritative. In 
 - Report changed files, checks run, results, and unresolved risks. Use GitHub artifacts as durable execution state.
 - Keep implementation and independent review separate; convert blocking review findings into explicit fix work and re-review them.
 
-<!-- /global-superpowers-bridge:v1 -->
+<!-- /global-superpowers-bridge:v1.1 -->
