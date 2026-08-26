@@ -17,3 +17,22 @@ When making changes to the API, here are the general steps you should take:
   - The full test suite takes a long time to run, so you should try to only execute the relevant tests locally, and let CI run the full test suite.
 4. Push to a branch, open a PR, and let CI run to verify your win condition.
 Keep these steps in mind while building your TODO list.
+
+## Global Superpowers Bridge
+
+<!-- global-superpowers-bridge:v1 -->
+
+The Firecrawl-specific testing and tooling rules above remain authoritative. In addition:
+
+- Read repository instructions and the GitHub task/issue brief before editing; treat the brief as the source of truth for scope and acceptance criteria.
+- Work on the smallest isolated branch/PR. Never implement directly on `main`/`master` without explicit authorization.
+- Each delegated implementation task should use a fresh coding-agent session. Independent review must be a separate pass/session.
+- When Superpowers skills are available, use the relevant process skill before implementation: brainstorming for new behavior/design, systematic debugging for bugs, TDD for features/fixes, and verification before completion claims.
+- Follow the repository-native Firecrawl commands above; do not substitute invented test/build commands.
+- Never expose credentials or secrets in source, issues, PRs, comments, or logs.
+- Do not merge, release, publish, deploy production changes, rotate credentials, change secrets, force-push default branches, or perform destructive operations without explicit authorization.
+- Preserve intentional behavior and avoid unrelated refactors.
+- Report changed files, checks run, results, and unresolved risks. Use GitHub artifacts as durable execution state.
+- Keep implementation and independent review separate; convert blocking review findings into explicit fix work and re-review them.
+
+<!-- /global-superpowers-bridge:v1 -->
