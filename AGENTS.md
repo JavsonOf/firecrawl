@@ -20,7 +20,7 @@ Keep these steps in mind while building your TODO list.
 
 ## Global Superpowers Bridge
 
-<!-- global-superpowers-bridge:v1.1 -->
+<!-- global-superpowers-bridge:v1.2 -->
 
 The Firecrawl-specific testing and tooling rules above remain authoritative. In addition:
 
@@ -29,6 +29,10 @@ The Firecrawl-specific testing and tooling rules above remain authoritative. In 
 - Each delegated implementation task should use a fresh coding-agent session. Independent review must be a separate pass/session.
 - When `@copilot` is invoked from an existing pull request, the agent may push only to that pull request's head branch. Never ask that session to create or publish another branch or separate PR; branch escape can fail with HTTP 403 in `engine-tools-report_progress`.
 - Controller-first PR-comment delegation: create the isolated branch/PR first, then tell `@copilot` to modify THIS PR branch directly. A genuinely separate branch/PR requires a new GitHub Agents/MCP task with the intended base branch.
+- Cloud `@copilot` remains the primary engine. If Copilot quota/credits/plan/entitlement prevents cloud execution, or the user explicitly requests `FORCE BYOK`, use the repository-local v1.2 BYOK runner on the SAME PR head branch via the temporary `.github/superpowers/byok-task.json` trigger.
+- BYOK uses the repository Actions `OPENAI_API_KEY` secret through Copilot SDK provider configuration. Never request, expose, commit, log, or place the key in task content; if the secret is missing, report the configuration blocker.
+- The BYOK AI session does not own commit/push/merge/release/deploy/secret operations or Bridge governance/runtime files. The workflow wrapper owns the final same-branch commit/push and removes the temporary task file.
+- If the standard independent reviewer is unavailable, use a separate read-only `mode: "review"` BYOK task and post its result as a PR comment.
 - When Superpowers skills are available, use the relevant process skill before implementation: brainstorming for new behavior/design, systematic debugging for bugs, TDD for features/fixes, and verification before completion claims.
 - Follow the repository-native Firecrawl commands above; do not substitute invented test/build commands.
 - Never expose credentials or secrets in source, issues, PRs, comments, or logs.
@@ -37,4 +41,4 @@ The Firecrawl-specific testing and tooling rules above remain authoritative. In 
 - Report changed files, checks run, results, and unresolved risks. Use GitHub artifacts as durable execution state.
 - Keep implementation and independent review separate; convert blocking review findings into explicit fix work and re-review them.
 
-<!-- /global-superpowers-bridge:v1.1 -->
+<!-- /global-superpowers-bridge:v1.2 -->
